@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.1"
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "no.nordicsemi.android.nrftoolbox"
@@ -41,12 +41,12 @@ dependencies {
     implementation 'com.google.android.gms:play-services-wearable:10.2.0'
 
     //noinspection GradleDependency
-    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     //noinspection GradleDependency
-    implementation 'com.android.support:design:27.0.2'
+    implementation 'com.android.support:design:27.1.1'
 
     implementation 'no.nordicsemi.android:log:2.1.1'
-    implementation 'no.nordicsemi.android.support.v18:scanner:1.0.0'
+    implementation 'no.nordicsemi.android.support.v18:scanner:1.1.0'
 
     // The DFU Library is imported automatically from jcenter:
     implementation 'no.nordicsemi.android:dfu:1.6.1'
@@ -55,7 +55,11 @@ dependencies {
     // implementation project(':dfu')
 
     // Import the BLE Library
-    implementation project(':ble')
+    implementation 'no.nordicsemi.android:ble:1.2.0'
+    // The BLE Library may be included from jcenter. If you want to modify the code,
+    // clone the project from GitHub and replace the line above with the following
+    // (and also the according lines in the settings.gradle):
+    // implementation project(':ble')
 
     implementation('org.simpleframework:simple-xml:2.7.1') {
         exclude group: 'stax', module: 'stax-api'

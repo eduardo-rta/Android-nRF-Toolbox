@@ -101,6 +101,10 @@ public class BleManager implements BleProfileApi {
 	private int mConnectionState = BluetoothGatt.STATE_DISCONNECTED;
 	/** Last received battery value or -1 if value wasn't received. */
 	private int mBatteryValue = -1;
+	/**
+	 * The current MTU (Maximum Transfer Unit). The maximum number of bytes that can be sent in a single packet is MTU-3.
+	 */
+	private int mMtu = 23;
 
 	private final BroadcastReceiver mBluetoothStateBroadcastReceiver = new BroadcastReceiver() {
 		@Override
@@ -577,6 +581,17 @@ public class BleManager implements BleProfileApi {
 	@Override
 	public final boolean requestMtu(final int mtu) {
 		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && enqueue(Request.newMtuRequest(mtu));
+	}
+
+	@Override
+	public final int getMtu() {
+		return mMtu;
+	}
+
+	@Override
+	public final void overrideMtu(final int mtu) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+			mMtu = mtu;
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
